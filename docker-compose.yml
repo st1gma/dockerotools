@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  dockerotools:
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - /path/to/badshit:/data/badshit
