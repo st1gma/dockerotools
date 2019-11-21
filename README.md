@@ -1,7 +1,12 @@
 # Docker-o-tools
 
-It's simply a docker container to run several decoders. So far only KevinTheHermit's decoders have been implemented with more to come.
+It's simply a docker container to run several decoders. 
 
+All the credit goes to the following awesome dudes:
+
+KevinTheHermit -> https://github.com/kevthehermit
+jurg -> https://github.com/jurg
+sysopfb -> https://github.com/sysopfb
 
 ## How to run
 

@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/local/bin/python3 /app/dockerotools.py
+/usr/local/bin/python3 /opt/app/dockerotools.py
