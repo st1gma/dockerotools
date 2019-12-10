@@ -16,7 +16,7 @@ from subprocess import DEVNULL, STDOUT, check_call, check_output
 
 dockerotools = Starlette(debug=True)
 SAMPLEPATH="/data/badshit/"
-DECODERS=['kevin','jurg']
+DECODERS=['kevin'] #,'jurg']
 DECODERSPATH='/opt/decoders/'
 
 ##exception handlers
@@ -54,6 +54,8 @@ async def malconf(request):
                 #     raise HTTPException(status_code=412)
             elif package == 'jurg':
                 # move file to tmp
+                if not os.path.exists(os.path.dirname('/tmp/'+request.path_params['filename'])):
+                    os.makedirs(os.path.dirname('/tmp/'+request.path_params['filename']))
                 shutil.copyfile(filepath,'/tmp/'+request.path_params['filename'])
                 # execute qrypter
                 check_call(['python3', DECODERSPATH+'java_malware_tools-master/unpackers/qrypter/current-qrypter.py', '/tmp/'+request.path_params['filename']], stdout=DEVNULL, stderr=DEVNULL)
