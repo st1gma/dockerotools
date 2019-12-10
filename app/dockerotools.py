@@ -35,7 +35,7 @@ async def server_error(request, exc):
 async def homepage(request):
     return JSONResponse({'hello': 'don\'t just sit there and send me some info @malwareconfig endpoint.'})
 
-@dockerotools.route('/malwareconfig/{filename}')
+@dockerotools.route('/malwareconfig/{filename:path}')
 async def malconf(request):
     filepath=SAMPLEPATH + request.path_params['filename']
     if path.exists(filepath):
