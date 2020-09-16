@@ -16,7 +16,7 @@ from subprocess import DEVNULL, STDOUT, check_call, check_output
 
 dockerotools = Starlette(debug=True)
 SAMPLEPATH="/data/badshit/"
-DECODERS=['kevin','revil'] #,'jurg']
+DECODERS=['kevin','revil','cs'] #,'jurg']
 DECODERSPATH='/opt/decoders/'
 
 ##exception handlers
@@ -70,9 +70,19 @@ async def malconf(request):
                     #raise if we couldn't find the unpacked file
                     raise HTTPException(status_code=412)
             elif package == 'revil':
-                conf=json.loads(check_output(['python3', DECODERSPATH+'revil.py', filepath]).decode('utf-8'))
-                conf.update({'mal_family': 'revil'})
-                return JSONResponse({'config': conf})
+                try:
+                    conf=json.loads(check_output(['python3', DECODERSPATH+'revil.py', filepath]).decode('utf-8'))
+                    conf.update({'mal_family': 'revil'})
+                    return JSONResponse({'config': conf})
+                except:
+                    pass
+            elif package == 'cs':
+                try:
+                    conf=json.loads(check_output(['python3', DECODERSPATH+'CobaltStrikeBeacon.py','--json',filepath]).decode('utf-8'))
+                    conf.update({'mal_family': 'cobaltstrike'})
+                    return JSONResponse({'config': conf})
+                except:
+                    pass
             else:
                 #raise if we couldn't find any config extractor
                 raise HTTPException(status_code=412)

@@ -6,4 +6,4 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - /path/to/badshit:/data/badshit
+      - /tmp/badshit:/data/badshit

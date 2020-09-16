@@ -10,7 +10,7 @@ RUN apt update ;\
     apt update ;\
     apt install adoptopenjdk-8-hotspot build-essential git -y
 
-RUN pip3 install --upgrade malwareconfig starlette uvicorn pycrypto pefile
+RUN pip3 install --upgrade malwareconfig starlette uvicorn pycrypto pefile netstruct
 
 COPY ./app /opt/app
 COPY ./decoders /opt/decoders
