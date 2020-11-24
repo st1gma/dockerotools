@@ -80,7 +80,10 @@ async def malconf(request):
                 try:
                     conf=json.loads(check_output(['python3', DECODERSPATH+'CobaltStrikeBeacon.py','--json',filepath]).decode('utf-8'))
                     conf.update({'mal_family': 'cobaltstrike'})
-                    return JSONResponse({'config': conf})
+                    if conf['MaxGetSize'] == "Not Found" and conf['Spawnto_x86'] == "Not Found":
+                        raise HTTPException(status_code=412)
+                    else:
+                        return JSONResponse({'config': conf})
                 except:
                     pass
             else:
